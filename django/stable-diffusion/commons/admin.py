@@ -1,3 +1,6 @@
+from solo.admin import SingletonModelAdmin
+
+from commons.models import SiteConfiguration
 from django.contrib import admin
 
-# Register your models here.
+admin.site.register(SiteConfiguration, SingletonModelAdmin)

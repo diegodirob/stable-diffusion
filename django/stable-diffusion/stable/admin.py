@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from stable.models import StableRecord
+
+
+@admin.register(StableRecord)
+class StableRecordAdmin(admin.ModelAdmin):
+    pass
