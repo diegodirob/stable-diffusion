@@ -1,15 +1,19 @@
-from django.urls import reverse_lazy, reverse
-from django.views.generic import TemplateView, DetailView
+from django.urls import reverse
+from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView
 
 from stable.forms import TextToImageForm
 from stable.models import StableRecord
 
 
-class ResultView(DetailView):
-    template_name = 'result.html'
-
+class StableRecordListView(ListView):
     model = StableRecord
+    template_name = 'list.html'
+
+
+class ResultView(DetailView):
+    model = StableRecord
+    template_name = 'result.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

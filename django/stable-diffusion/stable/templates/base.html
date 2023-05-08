@@ -1,0 +1,22 @@
+{% load static %}
+
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Stable Diffusion</title>
+  {% block extra_head %}
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+  {% endblock %}
+</head>
+<body>
+{% block banner %}
+  <div class="banner">
+    <img src="https://cdn.myportfolio.com/33867e8c-569f-4a5d-8da5-b81bab5b6475/f4aa0480-ad9a-458d-a56e-e379b9fe891a_rwc_3x0x387x140x4096.png?h=3e18104ba982790f073ed99528d2f622">
+  </div>
+{% endblock %}
+<div class="content">
+  {% block content %}
+  {% endblock %}
+</div>
+</body>
+</html>

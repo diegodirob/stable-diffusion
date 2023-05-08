@@ -5,8 +5,8 @@ from stable.vendors.stable_diffusion import StableDiffusion
 
 
 class TextToImageForm(forms.Form):
-    prompt = forms.CharField()  # widget=forms.Textarea)
-    negative_prompt = forms.CharField(required=False)  # widget=forms.Textarea)
+    prompt = forms.CharField(widget=forms.Textarea(attrs={'rows': '3'}))
+    negative_prompt = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': '3'}))
 
     def get_image(self) -> dict:
         try:

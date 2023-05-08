@@ -1,19 +1,33 @@
-<h3><p>StableDiffusion <span>{{object.response_data.status}}</span></p></h3>
+{% extends "base.html" %}
+{% load static %}
 
-<h4>Request Data</h4>
-<p>{{object.user.email}}</p>
-{% for key, value in object.request_data.items %}
-  {% if value %}
-    <p>{{key}}: <span>{{value}}</span></p>
+{% block extra_head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'result.css' %}">
+{% endblock %}
+
+{% block content %}
+
+  {% if object.response_data.status|lower == "success" %}
+    <div class="stable-images">
+      {% for value in object.response_data.output %}
+        <img src="{{value}}">
+      {% endfor%}
+    </div>
   {% endif %}
-{% endfor %}
 
-<h4>Response Data</h4>
-<p>Result link:</p>
-{% for value in object.response_data.output %}
-  <span>{{value}}</span>
-{% endfor%}
+  <div class="stable-info">
+    <p>User: {{object.user.email}}</p>
+    <p>Status: {{object.response_data.status}}</p>
+    {% for key, value in object.request_data.items %}
+      {% if value %}
+        <p>{{key}}: <span>{{value}}</span></p>
+      {% endif %}
+    {% endfor %}
 
-<!--{% for key, value in object.response_data.meta.items %}-->
-<!--  <p>{{key}}: <span>{{value}}</span></p>-->
-<!--{% endfor%}-->
+    {% for key, value in object.response_data.meta.items %}
+      <p>{{key}}: <span>{{value}}</span></p>
+    {% endfor%}
+  </div>
+
+{% endblock %}
