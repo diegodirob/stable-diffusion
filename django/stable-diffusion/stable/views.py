@@ -9,6 +9,7 @@ from stable.models import StableRecord
 class StableRecordListView(ListView):
     model = StableRecord
     template_name = 'list.html'
+    queryset = StableRecord.objects.order_by('?')
 
 
 class ResultView(DetailView):

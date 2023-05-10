@@ -37,27 +37,15 @@
     </style>
   </head>
   <body>
+
     <div class="image-grid">
-      <img src="https://via.placeholder.com/350x350" alt="Image 1" class="image">
-      <img src="https://via.placeholder.com/400x400" alt="Image 2" class="image">
-      <img src="https://via.placeholder.com/300x300" alt="Image 3" class="image">
-      <img src="https://via.placeholder.com/450x450" alt="Image 4" class="image">
-      <img src="https://via.placeholder.com/200x200" alt="Image 5" class="image">
-      <img src="https://via.placeholder.com/500x500" alt="Image 6" class="image">
-      <img src="https://via.placeholder.com/250x250" alt="Image 7" class="image">
-      <img src="https://via.placeholder.com/350x350" alt="Image 8" class="image">
-      <img src="https://via.placeholder.com/400x400" alt="Image 9" class="image">
-      <img src="https://via.placeholder.com/300x300" alt="Image 10" class="image">
-      <img src="https://via.placeholder.com/450x450" alt="Image 11" class="image">
-      <img src="https://via.placeholder.com/200x200" alt="Image 12" class="image">
-      <img src="https://via.placeholder.com/500x500" alt="Image 13" class="image">
-      <img src="https://via.placeholder.com/250x250" alt="Image 14" class="image">
-      <img src="https://via.placeholder.com/350x350" alt="Image 15" class="image">
-      <img src="https://via.placeholder.com/400x400" alt="Image 16" class="image">
-      <img src="https://via.placeholder.com/300x300" alt="Image 17" class="image">
-      <img src="https://via.placeholder.com/450x450" alt="Image 18" class="image">
-      <img src="https://via.placeholder.com/200x200" alt="Image 19" class="image">
-      <img src="https://via.placeholder.com/500x500" alt="Image 20" class="image">
+      {% for element in object_list %}
+        {% for value in element.response_data.output %}
+          <a href="{% url 'stable-result' pk=element.id %}">
+            <img src="{{value}}" class="image">
+          </a>
+        {% endfor%}
+      {% endfor %}
     </div>
   </body>
 </html>
