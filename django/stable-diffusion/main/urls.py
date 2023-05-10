@@ -5,8 +5,9 @@ from stable.views import TextToImageFormView, ResultView, StableRecordListView
 
 urlpatterns = [
     path('', TextToImageFormView.as_view()),
-    path('result/<int:pk>/', ResultView.as_view(), name='result'),
-    path('list/', StableRecordListView.as_view(), name='list'),
+
+    path('stable/result/<int:pk>/', ResultView.as_view(), name='stable-result'),
+    path('stable/list/', StableRecordListView.as_view(), name='stable-list'),
 
 
     path('admin/', admin.site.urls),

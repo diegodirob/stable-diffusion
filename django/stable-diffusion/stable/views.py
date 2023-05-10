@@ -30,4 +30,4 @@ class TextToImageFormView(FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('result', kwargs={'pk': self.instance.id})
+        return reverse('stable-result', kwargs={'pk': self.instance.id})
