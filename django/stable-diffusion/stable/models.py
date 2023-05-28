@@ -12,3 +12,4 @@ class StableRecord(CreatedUpdatedMixin):
 
     request_data = models.JSONField(null=True, blank=True)
     response_data = models.JSONField(null=True, blank=True)
+    type = models.CharField(max_length=16, null=True, blank=True)

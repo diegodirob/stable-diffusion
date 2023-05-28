@@ -16,16 +16,21 @@ class StableDiffusionForm(forms.Form):
             response = self.get_response()
         except Exception as e:
             response = {'error': str(e)}
-        return {'request_data': self.cleaned_data, 'response_data': response}
+
+        service = self.cleaned_data.pop('type')
+        return {'request_data': self.cleaned_data, 'response_data': response, 'type': service}
 
 
 class TextToImageForm(StableDiffusionForm):
+    type = forms.CharField(widget=forms.HiddenInput(), required=False, initial='text-to-image')
+
     def get_response(self) -> dict:
         return StableDiffusion().text_to_image(**self.cleaned_data).json()
 
 
 class ImageToImageForm(StableDiffusionForm):
     init_image = forms.URLField(required=True)
+    type = forms.CharField(widget=forms.HiddenInput(), required=False, initial='image-to-image')
 
     def get_response(self) -> dict:
         return StableDiffusion().text_to_image(**self.cleaned_data).json()
