@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView
 
-from stable.forms import TextToImageForm
+from stable.forms import TextToImageForm, ImageToImageForm
 from stable.models import StableRecord
 
 
@@ -21,10 +21,17 @@ class ResultView(DetailView):
         return context
 
 
-class TextToImageFormView(FormView):
+class StableFormView(FormView):
+    available_form_choices = {
+        'text-to-image': TextToImageForm,
+        'image-to-image': ImageToImageForm,
+    }
     template_name = 'texttoimage.html'
-    form_class = TextToImageForm
     instance = None
+
+    def get_form_class(self, *args, **kwargs):
+        choice = self.request.resolver_match.kwargs.get('service', 'text-2-image')
+        return self.available_form_choices.get(choice, TextToImageForm)
 
     def form_valid(self, form):
         self.instance = StableRecord.objects.create(user=self.request.user, **form.get_image())
